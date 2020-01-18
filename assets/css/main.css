@@ -551,6 +551,14 @@
 		z-index: 5;
 	}
 
+	.thumbnails img {
+		padding: 20px;
+	}
+
+	.thumbnails img #no-padding {
+		padding: 0px;
+	}
+
 	#particles-js {
 		position:absolute;
 		z-index: 1;
