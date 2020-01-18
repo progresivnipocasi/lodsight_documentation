@@ -555,7 +555,7 @@
 		padding: 20px;
 	}
 
-	.thumbnails img #no-padding {
+	.thumbnails #no-padding {
 		padding: 0px;
 	}
 
