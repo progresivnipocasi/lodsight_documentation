@@ -54,6 +54,8 @@
 	}
 
 	#about, #requirements {
+		position: relative;
+		z-index: 5;
 		padding: 20px;
 		background-color: rgba(0, 0, 0, 0.30);
 		border-radius: 20px;
@@ -544,8 +546,12 @@
 		}
 
 	}
+	header * {
+		position: relative;
+		z-index: 5;
+	}
 
-	#particles-js{
+	#particles-js {
 		position:absolute;
 		z-index: 1;
 		width: 100%; 
@@ -553,7 +559,8 @@
 		background-image: url(""); 
 		background-repeat: no-repeat; 
 		background-size: cover; 
-		background-position: 50% 50%; } 
+		background-position: 50% 50%; 
+	} 
 
 
 	@media screen and (max-width: 1280px) {
@@ -2580,7 +2587,6 @@
 
 	#wrapper {
 		max-width: 68em;
-		z-index: 5;
 		width: 100%;
 		margin: 0 auto;
 		position: relative;
