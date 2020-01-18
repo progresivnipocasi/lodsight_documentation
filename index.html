@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>LODSight local documentation</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+		<div id="particles-js">
+		</div>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<span class="avatar"><img src="images/avatar.png" alt="" /></span>
+						<h1>Dokumentace nástroje <strong>LODSight</strong>, online verze k nelezení <a href="https://lod2-dev.vse.cz/lodsight/index.html">zde</a>.<br />
+						Tento dokument byl vytvořen za účelem objasnění, jak sprovoznit nástroj lokálně.</h1>
+						<ul class="icons">
+							<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+					</header>
+
+				<!-- Main -->
+					<section id="main">
+						<section id="about">
+							<div>
+								<h1>O aplikaci</h1>
+								<p>
+									Nástroj slouží k sumarizaci RDF datasetů, skrze visualizaci grafů utvořených z jednotlivých tříd,
+									datatypů a predikátů užitých v těchto datasetech. Visualizace má za úkol snadno a rychle umožnit nalezení
+									druhů dat obsažených v datasetu a jejich struktur. Doplňkově také zobrazuje jak jsou v datasetech
+									užity slovníky.
+								</p>
+								<h2>Komponenty</h2>
+								<p>LODSight se skládá ze dvou hlavních komponent, obě dvě využívají různých technologií ke své
+									funkcionalitě.
+								</p>
+								<h3>LODSight summarizer</h3>
+								<p>LODSight summarizer je experimentalní implementace algoritmu sloužící k sumarizaci datasetů,
+									který vytváří (data)typové-vlastnostní grafové sumarizace LOD datasetů. Toto je možné skrze
+									přístup k SPARQL endpointům, výsledky jsou následně uloženy do relační databáze.
+									Zdrojový kód samostatně dostupný z<a href="https://github.com/marek-dudas/LODSight"> odkazu zde </a>.
+								</p>
+								<h3>LODSight visualizer</h3>
+								<p>Tento software visualizuje uložené sumarizace propojených datasetů vytvořených sumarizací.
+									Data k ním získává z LODSight-graph-creatoru. Kód k tomuto softwaru je volně dostupný na GitHubu z
+									<a href="https://github.com/marek-dudas/LodSight-graph-creator"> odkazu zde </a>.
+								</p>
+							</div>
+						</section>
+
+						<section id="requirements">
+							<div>
+								<h1>Technologie potřebné k lokálnímu spuštění</h1>
+								<p>
+									Pokud si chcete LODSight spustit lokálně na svém vlastním stroji a využívat ho nezávisle
+									na dostupnosti na webu, můžete toho dosáhnout v několika krocích. Před samotnou konfigurací
+									a instalací je však potřeba ujistit se, zda máte dostupná veškeré nástroje nutné k 
+									bezproblémovému spuštění.<br>
+
+									Prvním a hlavním krokem bude stáhnutí samotného zdrojového kódu nástroje LODSight.
+									Soubor se stáhne v .zip formátu. Je tedy nutné samotný kód extrahovat.
+								<ol>
+									<li>Na ploše vytvořte složku s názvem LODSight</li>
+									<li>Stáhněte si zdrojové kódy nástroje</li>
+									<li>Obsah staženého souboru vyextrahujte do složky na ploše</li>
+								</ol>
+								</p>
+								<h2>Nástroje potřebné ke spuštění LODSight summarizeru</h2>
+								<p>Ke spuštění LODSight summarizeru je potřeba mít dostupnou technologii NodeJS.
+									Instalace NodeJS je snadná, rychlá a bezplatná.
+									<ol>
+										<li>Stáhněte poslední verzi z <a href="https://nodejs.org/en/">odkazu</a></li>
+										<li>Postupujte podle doporučené instalace</li>
+										<li>Před spuštěním je potřeba mít sprovozněnou a dostupnou databázi (viz další návod)</li>
+										<li>Pro spuštění summarizeru otevřete LODSight složku na ploše a spusťte LODSight.bat soubor</li>
+									</ol>
+								</p>
+								<h2>Nástroje potřebné ke spuštění LODSight visualizer</h2>
+								<p>Spuštění visualizeru se může jevit jako o něco složitější, avšak s návodem a sledováním kroků
+									se jedná o otázku maximálně několika minut.
+									<ol>
+										<li>Vytvořte složku wamp na ploše vašeho počítače</li>
+										<li>Stáhněte poslední verzi nástroje WampServer z <a href="http://www.wampserver.com/en/">odkazu</a></li>
+										<li>Postupujte podle doporučené instalace</li>
+										<li>Lokaci instalace zvolte vytvořenou wamp složku</li>
+										<li>Po instalaci nastavte root složku pro Váš Apache server
+											<ol>
+												<li>Otevřte soubor <b>httpd.conf</b> v adresáři C:\Users\{User}\Desktop\wamp\bin\apache\apache2.4.39\conf</li>
+												<li>Na řádcích 266 a 267 upravte kořenovou složku na C:/Users/{User}/Desktop/LODSight/lod_sight/lodsight_executables_complete_package/lodsight-visualizer/dist</li>
+											</ol>
+											</li>
+										<li>Naimportujte databázové schéma do databáze<li>
+											<ol>
+												<li>Otevřete příkazovou řádku</li>
+												<li>Nanavigujte se na C:\Users\{User}\Desktop\wamp\bin\mysql\{vaše verze mySQL}\bin > mysql.exe -u root</li>
+												<li>Spusťte postupně následující příkazy</li>
+													<ol>
+														<li>CREATE DATABASE lodsight2 CHARACTER SET utf8;</li>
+														<li>use lodsight2</li>
+														<li>source C:\Users\{User}\Desktop\lodsight_backup\lodsight2.sql</li>
+														<li>source C:\Users\{User}\Desktop\lodsight_backup\query_log.sql</li>
+													</ol>
+											</ol>
+										</li>
+										<li>Pro spuštění visualizeru otevřete LODSight složku na ploše a spusťte LODSight.bat soubor</li>
+									</ol>
+								</p>
+							</div>
+						</section>
+
+						<!-- Thumbnails -->
+							<section class="thumbnails">
+								<div>
+									<a href="http://www.wampserver.com/en/">
+										<img src="images/thumbs/wamp-logo.png" alt="" />
+										<h3>Wamp server dostupný zde</h3>
+									</a>
+								</div>
+								<div>
+									<a href="https://nodejs.org/en/">
+										<img src="images/thumbs/node-js.png" alt="" />
+										<h3>NodeJs ke stažení zde</h3>
+									</a>
+								</div>
+								<div>
+									<a href="https://lod2-dev.vse.cz/lodsight/index.html">
+										<img src="images/avatar.png" alt="" />
+										<h3>Online verze nástroje LODSight</h3>
+									</a>
+								</div>
+							</section>
+					</section>
+
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul>
+							<li>
+								<p>&copy;<a href="https://www.vse.cz">Vysoká škola ekonomická v Praze </a></p>
+							</li>
+						</ul>
+					</footer>
+
+				</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+	</body>
+</html >
